@@ -20,10 +20,27 @@ public abstract class EnemyBaseState : State
         // Constructor with 2 inputs
         stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
+
+    protected void FacePlayer()
+    {
+        if (stateMachine.Player == null) { return; }
+
+        Vector3 targetDirection = stateMachine.Player.transform.position - stateMachine.transform.position;
+        targetDirection.y = 0;
+
+        stateMachine.transform.rotation = Quaternion.LookRotation(targetDirection);
+    }
+
     protected bool IsInChasingRange()
     {
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
         return playerDistanceSqr <= Mathf.Pow(stateMachine.PlayerChasingRange, 2);
+    }
+
+    protected bool IsInAttackingRange()
+    {
+        float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
+        return playerDistanceSqr <= Mathf.Pow(stateMachine.AttackRange, 2);
     }
 
 }
