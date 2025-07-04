@@ -37,10 +37,4 @@ public abstract class EnemyBaseState : State
         return playerDistanceSqr <= Mathf.Pow(stateMachine.PlayerChasingRange, 2);
     }
 
-    protected bool IsInAttackingRange()
-    {
-        float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
-        return playerDistanceSqr <= Mathf.Pow(stateMachine.AttackRange, 2);
-    }
-
 }

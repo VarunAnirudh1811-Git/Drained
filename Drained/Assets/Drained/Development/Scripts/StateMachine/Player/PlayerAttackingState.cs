@@ -14,7 +14,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.WeaponDamage.SetAttack(attack.Damage);
+        stateMachine.WeaponDamage.SetAttack(attack.Damage, attack.KnockBack);
         stateMachine.PlayerAnimator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
     }
 
@@ -24,7 +24,7 @@ public class PlayerAttackingState : PlayerBaseState
 
         FaceTarget();
 
-        float attackNormalizedTime = GetAttackNormalizedTime();
+        float attackNormalizedTime = GetAttackNormalizedTime(stateMachine.PlayerAnimator);
         if (attackNormalizedTime < 1f)
         {
             if (attack.ForceTime >= attackNormalizedTime)
@@ -54,26 +54,6 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Exit()
     {
-    }
-
-    private float GetAttackNormalizedTime()
-    {
-        AnimatorStateInfo currentInfo = stateMachine.PlayerAnimator.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextInfo = stateMachine.PlayerAnimator.GetNextAnimatorStateInfo(0);
-
-        if (stateMachine.PlayerAnimator.IsInTransition(0) && nextInfo.IsTag("Attack"))
-        {
-            return nextInfo.normalizedTime;
-        }
-        else if (!stateMachine.PlayerAnimator.IsInTransition(0) && currentInfo.IsTag("Attack"))
-        {
-            return currentInfo.normalizedTime;
-        }
-        else
-        {
-            return 0f;
-        }
-
     }
 
     private void TryComboAttack(float attackNormalizedTime)

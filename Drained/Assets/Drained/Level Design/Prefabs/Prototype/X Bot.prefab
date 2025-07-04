@@ -369,6 +369,7 @@ MonoBehaviour:
   <Targeter>k__BackingField: {fileID: 8477316407604128669}
   <ForceReceiver>k__BackingField: {fileID: 8357600926320718875}
   <WeaponDamage>k__BackingField: {fileID: 5802379788269948553}
+  <Health>k__BackingField: {fileID: 3454451900916739279}
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: PunchRight
     <TransitionDuration>k__BackingField: 0.1
@@ -376,6 +377,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.6
     <ForceTime>k__BackingField: 0.35
     <ForceAmount>k__BackingField: 15
+    <KnockBack>k__BackingField: 6
     <Damage>k__BackingField: 8
   - <AnimationName>k__BackingField: PunchLeft
     <TransitionDuration>k__BackingField: 0.1
@@ -383,6 +385,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.75
     <ForceTime>k__BackingField: 0.35
     <ForceAmount>k__BackingField: 15
+    <KnockBack>k__BackingField: 8
     <Damage>k__BackingField: 10
   - <AnimationName>k__BackingField: CrossPunch
     <TransitionDuration>k__BackingField: 0.2
@@ -390,6 +393,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0
     <ForceTime>k__BackingField: 0.35
     <ForceAmount>k__BackingField: 15
+    <KnockBack>k__BackingField: 10
     <Damage>k__BackingField: 12
   <FreeLookMoveSpeed>k__BackingField: 5
   <TargetingMoveSpeed>k__BackingField: 4
@@ -466,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterController: {fileID: 3825988099520426893}
+  NavMeshAgent: {fileID: 0}
   drag: 0.3
 --- !u!114 &5848289368027240914
 MonoBehaviour:
