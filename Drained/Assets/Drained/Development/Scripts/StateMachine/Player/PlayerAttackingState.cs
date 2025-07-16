@@ -43,10 +43,12 @@ public class PlayerAttackingState : PlayerBaseState
             if (stateMachine.Targeter.CurrentTarget != null)
             {
                 stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
+                return;
             }
             else
             {
                 stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+                return;
             }
         }
         previousFrameTime = attackNormalizedTime;

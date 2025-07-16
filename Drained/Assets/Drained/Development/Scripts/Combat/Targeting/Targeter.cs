@@ -46,8 +46,7 @@ public class Targeter : MonoBehaviour
         {
             Vector2 screenPoint = PlayerCamera.WorldToViewportPoint(target.transform.position);
 
-            if (screenPoint.x < 0 || screenPoint.x > 1 ||
-                screenPoint.y < 0 || screenPoint.y > 1)
+            if (!target.GetComponentInChildren<Renderer>().isVisible)
             {
                 continue; // Target is outside the screen bounds
             }

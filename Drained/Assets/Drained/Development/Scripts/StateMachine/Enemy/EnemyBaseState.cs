@@ -33,6 +33,8 @@ public abstract class EnemyBaseState : State
 
     protected bool IsInChasingRange()
     {
+        if(stateMachine.Player.isDead) { return false; }
+
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
         return playerDistanceSqr <= Mathf.Pow(stateMachine.PlayerChasingRange, 2);
     }

@@ -78,7 +78,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 0
+  BlendHint: 2
 --- !u!114 &5738886668964936127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
+  Damping: {x: 0, y: 0, z: 0}
   ShoulderOffset: {x: 0, y: 1.21, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 0
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0.1}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -248,8 +248,8 @@ MonoBehaviour:
       LookAtTarget: {fileID: 0}
       CustomLookAtTarget: 0
   DefaultBlend:
-    Style: 1
-    Time: 0.5
+    Style: 2
+    Time: 0.25
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -276,6 +276,26 @@ MonoBehaviour:
   - Hash: 846512302
     HashOfParent: 585382737
   - Hash: -479991077
+    HashOfParent: 756556552
+  - Hash: 168036699
+    HashOfParent: -479991077
+  - Hash: 641460239
+    HashOfParent: -479991077
+  - Hash: -113127054
+    HashOfParent: -479991077
+  - Hash: 2026270452
+    HashOfParent: -479991077
+  - Hash: 227025722
+    HashOfParent: 756556552
+  - Hash: -1965430707
+    HashOfParent: 756556552
+  - Hash: -12705956
+    HashOfParent: 756556552
+  - Hash: 1801729307
+    HashOfParent: 756556552
+  - Hash: -1239458600
+    HashOfParent: 756556552
+  - Hash: -946407516
     HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
@@ -410,7 +430,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 0
+  BlendHint: 2
 --- !u!114 &8414890596838206841
 MonoBehaviour:
   m_ObjectHideFlags: 0

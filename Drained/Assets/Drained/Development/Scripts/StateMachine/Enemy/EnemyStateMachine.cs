@@ -11,16 +11,17 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public WeaponDamage WeaponDamage { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Target Target { get; private set; }
+    [field: SerializeField] public Ragdoll Ragdoll { get; private set; }    
     [field: SerializeField] public float EnemySpeed { get; private set; }
     [field : SerializeField] public float PlayerChasingRange { get; private set; } = 5f;
     [field: SerializeField] public float AttackRange { get; private set; } = 1f;
     [field: SerializeField] public float AttackKnockBack { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; } = 20;
-    public GameObject Player { get; private set; }
+    public Health Player { get; private set; }
 
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 
         NavMeshAgent.updatePosition = false;
         NavMeshAgent.updateRotation = false;

@@ -275,6 +275,10 @@ PrefabInstance:
       value: X Bot
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96ceca859d384d44f9da5a670cc591ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 96ceca859d384d44f9da5a670cc591ef, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -340,6 +344,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96ceca859d384d44f9da5a670cc591ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3454451900916739279}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96ceca859d384d44f9da5a670cc591ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5627381005338905669}
   m_SourcePrefab: {fileID: 100100000, guid: 96ceca859d384d44f9da5a670cc591ef, type: 3}
 --- !u!4 &4890762052572265169 stripped
 Transform:
@@ -370,6 +377,7 @@ MonoBehaviour:
   <ForceReceiver>k__BackingField: {fileID: 8357600926320718875}
   <WeaponDamage>k__BackingField: {fileID: 5802379788269948553}
   <Health>k__BackingField: {fileID: 3454451900916739279}
+  <Ragdoll>k__BackingField: {fileID: 5627381005338905669}
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: PunchRight
     <TransitionDuration>k__BackingField: 0.1
@@ -498,6 +506,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
+--- !u!114 &5627381005338905669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229992534859047019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00504ca8d1b97d84b98869488a4754e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5303014976258603666}
+  controller: {fileID: 3825988099520426893}
 --- !u!4 &6764529354493993714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 96ceca859d384d44f9da5a670cc591ef, type: 3}

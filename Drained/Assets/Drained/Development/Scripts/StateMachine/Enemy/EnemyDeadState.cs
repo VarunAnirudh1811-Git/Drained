@@ -6,6 +6,7 @@ public class EnemyDeadState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.Ragdoll.EnableRagdoll(true);
         stateMachine.WeaponDamage.gameObject.SetActive(false);
         GameObject.Destroy(stateMachine.Target);
     }

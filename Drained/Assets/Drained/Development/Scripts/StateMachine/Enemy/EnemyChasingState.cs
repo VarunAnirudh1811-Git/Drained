@@ -26,6 +26,7 @@ public class EnemyChasingState : EnemyBaseState
         else if (IsInAttackingRange())
         {
             stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
+            return;
         }
 
             FacePlayer();
@@ -55,6 +56,8 @@ public class EnemyChasingState : EnemyBaseState
 
     protected bool IsInAttackingRange()
     {
+        if (stateMachine.Player.isDead) { return false; }
+
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
         return playerDistanceSqr <= Mathf.Pow(stateMachine.AttackRange, 2);
     }

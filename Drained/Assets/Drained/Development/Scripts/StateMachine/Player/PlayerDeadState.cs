@@ -6,6 +6,7 @@ public class PlayerDeadState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.Ragdoll.EnableRagdoll(true);
         stateMachine.WeaponDamage.gameObject.SetActive(false);
     }
 
@@ -13,5 +14,5 @@ public class PlayerDeadState : PlayerBaseState
     {
     }
 
-    public override void Exit() { }
+    public override void Exit() { } 
 }
