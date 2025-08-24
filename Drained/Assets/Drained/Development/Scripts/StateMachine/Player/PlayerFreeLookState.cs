@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -8,15 +9,29 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     private float AnimatorDampTime = 0.1f;
     private const float CrossFadeDuration = 0.2f;
+    private bool shouldFade; 
 
     /// Constructor
-    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerFreeLookState(PlayerStateMachine stateMachine, bool shouldFade = false) : base(stateMachine)
     {
+        this.shouldFade = shouldFade;
     }
     public override void Enter()
     {
         stateMachine.InputReader.ToggleTargetingEvent += OnToggleTargeting;
-        stateMachine.PlayerAnimator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        stateMachine.InputReader.JumpEvent += OnJump;
+        stateMachine.InputReader.DodgeEvent += OnDodge;
+
+        stateMachine.PlayerAnimator.SetFloat(FreeLookSpeedHash, 0f);
+
+        if (shouldFade)
+        {
+            stateMachine.PlayerAnimator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        }
+        else
+        {
+            stateMachine.PlayerAnimator.Play(FreeLookBlendTreeHash);
+        }
     }       
 
     public override void Update(float deltaTime)
@@ -51,7 +66,10 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.ToggleTargetingEvent -= OnToggleTargeting;
+        stateMachine.InputReader.JumpEvent -= OnJump;
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
     }
+
     private void OnToggleTargeting()
     {
         if(!stateMachine.Targeter.SelectTarget()) return;
@@ -80,5 +98,15 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.FreeLookRotationSpeed);
+    }
+
+    private void OnDodge()
+    {
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.MoveInput));
+    }
+
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
     }
 }

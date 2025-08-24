@@ -24,7 +24,7 @@ public class PlayerAttackingState : PlayerBaseState
 
         FaceTarget();
 
-        float attackNormalizedTime = GetAttackNormalizedTime(stateMachine.PlayerAnimator);
+        float attackNormalizedTime = GetAttackNormalizedTime(stateMachine.PlayerAnimator, "Attack");
         if (attackNormalizedTime < 1f)
         {
             if (attack.ForceTime >= attackNormalizedTime)

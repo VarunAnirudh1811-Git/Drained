@@ -9,16 +9,27 @@ public class PlayerTargetingState : PlayerBaseState
     private readonly int TargetingRightHash = Animator.StringToHash("TargetingRight");
     private float AnimatorDampTime = 0.1f;
     private float CrossFadeDuration = 0.2f;
+    private bool shouldFade;
 
     /// Constructor
-    public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerTargetingState(PlayerStateMachine stateMachine, bool shouldFade = true) : base(stateMachine)
     {
+        this.shouldFade = shouldFade;
     }
 
     public override void Enter()
     {
         stateMachine.InputReader.ToggleTargetingEvent += OnToggleTargeting;
-        stateMachine.PlayerAnimator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
+        stateMachine.InputReader.JumpEvent += OnJump;
+        stateMachine.InputReader.DodgeEvent += OnDodge;
+        if (shouldFade)
+        {
+            stateMachine.PlayerAnimator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
+        }
+        else
+        {
+            stateMachine.PlayerAnimator.Play(TargetingBlendTreeHash);
+        }
     }
 
     public override void Update(float deltaTime)
@@ -53,6 +64,8 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.ToggleTargetingEvent -= OnToggleTargeting;
+        stateMachine.InputReader.JumpEvent -= OnJump;
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
     }
 
     private void OnToggleTargeting()    
@@ -60,6 +73,12 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.Targeter.ClearTarget();
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     }
+
+    private void OnDodge()
+    {
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.MoveInput));
+    }
+
 
     private Vector3 CaluclateMovement()
     {
@@ -92,5 +111,9 @@ public class PlayerTargetingState : PlayerBaseState
             float xvalue = stateMachine.InputReader.MoveInput.x > 0 ? 1 : -1;
             stateMachine.PlayerAnimator.SetFloat(TargetingRightHash, xvalue, AnimatorDampTime, deltaTime);
         }
+    }
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
     }
 }
